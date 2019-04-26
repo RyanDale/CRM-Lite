@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
     console.log('try post');
     const account = new Account({
         name: req.body.name,
-        industry: req.body.industry
+        industry: req.body.industry,
+        contacts: req.body.contacts
     });
 
     console.log('acct', account);
