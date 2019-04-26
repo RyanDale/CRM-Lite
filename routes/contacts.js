@@ -18,7 +18,10 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const contact = new Contact({
-        name: req.body.name
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        phone: req.body.phone,
     });
 
     contact.save().then(contact => res.json(contact));

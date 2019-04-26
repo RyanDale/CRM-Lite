@@ -17,10 +17,13 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    console.log('try post');
     const account = new Account({
-        name: req.body.name
+        name: req.body.name,
+        industry: req.body.industry
     });
 
+    console.log('acct', account);
     account.save().then(account => res.json(account));
 });
 
