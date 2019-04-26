@@ -4,11 +4,14 @@
   "description": "Node app for managing contacts and accounts.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server"
+    "client": "npm start --prefix client",
+    "server": "nodemon server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Ryan Dale",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "mongoose": "^5.5.4"
