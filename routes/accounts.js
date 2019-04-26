@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Account.findById(req.params.id)
+        .populate('contacts')
         .then(account => res.json(account))
         .catch(() => res.status(404).json({
             success: false
@@ -17,14 +18,12 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log('try post');
     const account = new Account({
         name: req.body.name,
         industry: req.body.industry,
         contacts: req.body.contacts
     });
 
-    console.log('acct', account);
     account.save().then(account => res.json(account));
 });
 
