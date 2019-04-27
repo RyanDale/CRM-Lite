@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import { Card, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { getContacts } from '../actions/contactActions';
 
 class ContactList extends Component {
+    static propTypes = {
+        getContacts: PropTypes.func.isRequired,
+        contactList: PropTypes.object.isRequired
+    };
+
+    componentDidMount() {
+        this.props.getContacts();
+    }
+
     render() {
+        const { contacts } = this.props.contactList;
         return (
             <Card body>
                 <Card.Title>Contact List</Card.Title>
@@ -16,12 +30,14 @@ class ContactList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                        </tr>
+                        {contacts.map((contact) => (
+                            <tr key={contact._id}>
+                                <td>{`${contact.firstName} ${contact.lastName}`}</td>
+                                <td>{contact.email}</td>
+                                <td>{contact.phone}</td>
+                                <td>{contact.lastContacted}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </Table>
             </Card>
@@ -29,4 +45,8 @@ class ContactList extends Component {
     }
 }
 
-export default ContactList;
+const mapStateToProps = state => ({
+    contactList: state.contactList
+});
+
+export default connect(mapStateToProps, { getContacts })(ContactList);
