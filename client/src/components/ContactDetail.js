@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { Card, Table, Nav } from 'react-bootstrap';
+import { Card, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getContacts } from '../actions/contactActions';
+import { getContact } from '../actions/contactActions';
 
 class ContactList extends Component {
     static propTypes = {
-        getContacts: PropTypes.func.isRequired,
+        getContact: PropTypes.func.isRequired,
         contact: PropTypes.object.isRequired
     };
 
     componentDidMount() {
-        this.props.getContacts();
+        this.props.getContact(this.props.match.params.id);
     }
 
     render() {
-        const { contacts } = this.props.contact;
+        const { contact, loading } = this.props.contact;
         return (
             <Card body>
-                <Card.Title>Contact List</Card.Title>
+                <Card.Title>Contact Detail</Card.Title>
                 <Table responsive>
                     <thead>
                         <tr>
@@ -30,18 +30,17 @@ class ContactList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {contacts.map((contact) => (
-                            <tr key={contact._id}>
-                                <td>
-                                    <Nav.Link href={`#/contact-detail/${contact._id}`}>
-                                        {`${contact.firstName} ${contact.lastName}`}
-                                    </Nav.Link>
-                                </td>
-                                <td>{contact.email}</td>
+                        {loading
+                            ? <tr>
+                                <td colwidth="4">Loading...</td>
+                            </tr>
+                            : <tr>
+                                <td>{`${contact.firstName} ${contact.lastName}`}</td>
+                                <td>{loading} {contact.email}</td>
                                 <td>{contact.phone}</td>
                                 <td>{contact.lastContacted}</td>
                             </tr>
-                        ))}
+                        }
                     </tbody>
                 </Table>
             </Card>
@@ -53,4 +52,4 @@ const mapStateToProps = state => ({
     contact: state.contact
 });
 
-export default connect(mapStateToProps, { getContacts })(ContactList);
+export default connect(mapStateToProps, { getContact })(ContactList);
