@@ -1,15 +1,18 @@
-import React, {Component} from 'react';
-import {Nav, Navbar} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Card } from 'react-bootstrap';
 
 class Home extends Component {
-    render() {
-      return (
-        <div>
-            Home Page
-        </div>
-      );
-    }
+  render() {
+    return (
+      <Card body>
+        <Card.Title>Home</Card.Title>
+          <Card.Subtitle>
+            Welcome to the Contact Manager App. From here, you can create, view, delete, and add notes to your
+            contacts and accounts.
+          </Card.Subtitle>
+      </Card>
+    );
   }
-  
- export default Home;
- 
+}
+
+export default Home;
