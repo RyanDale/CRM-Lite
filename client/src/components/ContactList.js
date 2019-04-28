@@ -16,7 +16,7 @@ class ContactList extends Component {
     }
 
     render() {
-        const { contacts } = this.props.contact;
+        const { contacts, loading } = this.props.contact;
         return (
             <Card body>
                 <Card.Title>Contact List</Card.Title>
@@ -30,18 +30,24 @@ class ContactList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {contacts.map((contact) => (
-                            <tr key={contact._id}>
-                                <td>
-                                    <Nav.Link href={`#/contact-detail/${contact._id}`}>
-                                        {`${contact.firstName} ${contact.lastName}`}
-                                    </Nav.Link>
-                                </td>
-                                <td>{contact.email}</td>
-                                <td>{contact.phone}</td>
-                                <td>{contact.lastContacted}</td>
+                        {loading
+                            ? <tr>
+                                <td colwidth="4">Loading...</td>
                             </tr>
-                        ))}
+                            :
+                            contacts.map((contact) => (
+                                <tr key={contact._id}>
+                                    <td>
+                                        <Nav.Link href={`#/contact-detail/${contact._id}`}>
+                                            {`${contact.firstName} ${contact.lastName}`}
+                                        </Nav.Link>
+                                    </td>
+                                    <td>{contact.email}</td>
+                                    <td>{contact.phone}</td>
+                                    <td>{contact.lastContacted}</td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </Table>
             </Card>

@@ -15,7 +15,6 @@ class NavBar extends Component {
           <Nav className="mr-auto">
             <Nav.Link href="#/">Home</Nav.Link>
             <Nav.Link href="#/contact-list">Contacts</Nav.Link>
-            <Nav.Link href="#/contact-detail">Detail</Nav.Link>
             <Nav.Link href="#/account-list">Accounts</Nav.Link>
           </Nav>
         </Navbar>
