@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Note = require('./Note');
 
 const ContactSchema  = new Schema({
     firstName: {
@@ -9,6 +10,7 @@ const ContactSchema  = new Schema({
     lastName: 'string',
     email: 'string',
     phone: 'string',
+    notes: [Note.schema]
 });
 
 module.exports = Contact = mongoose.model('Contact', ContactSchema);

@@ -21,7 +21,8 @@ router.post('/', (req, res) => {
     const account = new Account({
         name: req.body.name,
         industry: req.body.industry,
-        contacts: req.body.contacts
+        contacts: req.body.contacts,
+        notes: req.body.notes
     });
 
     account.save().then(account => res.json(account));

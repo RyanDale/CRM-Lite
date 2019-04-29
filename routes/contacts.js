@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         phone: req.body.phone,
+        notes: req.body.notes
     });
 
     contact.save().then(contact => res.json(contact));
