@@ -5,7 +5,9 @@ const Contact = require('../models/Contact');
 
 
 router.get('/', (req, res) => {
-    Contact.find().then(contacts => res.json(contacts));
+    Contact.find().sort({
+        created: -1
+    }).then(contacts => res.json(contacts))
 });
 
 router.get('/:id', (req, res) => {

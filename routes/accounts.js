@@ -5,7 +5,9 @@ const Account = require('../models/Account');
 
 
 router.get('/', (req, res) => {
-    Account.find().then(accounts => res.json(accounts));
+    Account.find().sort({
+        created: -1
+    }).then(accounts => res.json(accounts));
 });
 
 router.get('/:id', (req, res) => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Table, Nav } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import { getContacts } from '../actions/contactActions';
 import ContactCreate from './ContactCreate';
@@ -28,7 +29,7 @@ class ContactList extends Component {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Last Contacted</th>
+                            <th>Created</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +47,7 @@ class ContactList extends Component {
                                     </td>
                                     <td>{contact.email}</td>
                                     <td>{contact.phone}</td>
-                                    <td>{contact.lastContacted}</td>
+                                    <td>{moment(contact.created).format('LL')}</td>
                                 </tr>
                             ))
                         }

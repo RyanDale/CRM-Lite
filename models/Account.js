@@ -11,7 +11,12 @@ const AccountSchema = new Schema({
     contacts: [
         { type: Schema.Types.ObjectId, ref: 'Contact' }
     ],
-    notes: [Note.schema]
+    notes: [Note.schema],
+    created: {
+        type: Date,
+        default: Date.now,
+        required: true
+    }
 });
 
 module.exports = Account = mongoose.model('Account', AccountSchema);

@@ -10,7 +10,12 @@ const ContactSchema  = new Schema({
     lastName: 'string',
     email: 'string',
     phone: 'string',
-    notes: [Note.schema]
+    notes: [Note.schema],
+    created: {
+        type: Date,
+        default: Date.now,
+        required: true
+    }
 });
 
 module.exports = Contact = mongoose.model('Contact', ContactSchema);
