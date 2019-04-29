@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Card, Table } from 'react-bootstrap';
+import { Card, Table, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import NoteTimeline from './NoteTimeline';
 import { getContact } from '../actions/contactActions';
 
 class ContactList extends Component {
@@ -18,32 +19,39 @@ class ContactList extends Component {
     render() {
         const { contact, loading } = this.props.contact;
         return (
-            <Card body>
-                <Card.Title>Contact Detail</Card.Title>
-                <Table responsive>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Last Contacted</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loading
-                            ? <tr>
-                                <td colwidth="4">Loading...</td>
+            <Container>
+                <Card body>
+                    <Card.Title>Contact Detail</Card.Title>
+                    <Table responsive>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Last Contacted</th>
                             </tr>
-                            : <tr>
-                                <td>{`${contact.firstName} ${contact.lastName}`}</td>
-                                <td>{loading} {contact.email}</td>
-                                <td>{contact.phone}</td>
-                                <td>{contact.lastContacted}</td>
-                            </tr>
-                        }
-                    </tbody>
-                </Table>
-            </Card>
+                        </thead>
+                        <tbody>
+                            {loading
+                                ? <tr>
+                                    <td colwidth="4">Loading...</td>
+                                </tr>
+                                : <tr>
+                                    <td>{`${contact.firstName} ${contact.lastName}`}</td>
+                                    <td>{loading} {contact.email}</td>
+                                    <td>{contact.phone}</td>
+                                    <td>{contact.lastContacted}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </Table>
+                </Card>
+                <br />
+                <Card body>
+                    <Card.Title>Notes</Card.Title>
+                    <NoteTimeline notes={contact.notes}></NoteTimeline>
+                </Card>
+            </Container>
         );
     }
 }
