@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getContacts } from '../actions/contactActions';
+import ContactCreate from './ContactCreate';
 
 class ContactList extends Component {
     static propTypes = {
@@ -20,6 +21,7 @@ class ContactList extends Component {
         return (
             <Card body>
                 <Card.Title>Contact List</Card.Title>
+                <ContactCreate></ContactCreate>
                 <Table responsive>
                     <thead>
                         <tr>
