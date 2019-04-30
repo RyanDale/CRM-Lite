@@ -1,12 +1,30 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import {createBrowserHistory} from 'history'
+import Mixpanel from 'mixpanel';
 
 import './App.css';
 
 import NavBar from './components/NavBar';
 
 class App extends Component {
+  componentWillMount() {
+    const history = createBrowserHistory();
+
+    // TODO: Pull this token from an env variable
+    window.mixpanel = Mixpanel.init('1f78febea606c22a820f86f7a9c5dbf7');
+
+    history.listen(location => {
+      const uri = `${location.pathname}${location.search}${location.hash}`;
+      const pageName = location.hash.split('/')[1];
+      window.mixpanel.track('Page View', {
+        uri,
+        'Page Name': pageName
+      });
+    });
+  }
+
   render() {
     return (
       <Provider store={store}>

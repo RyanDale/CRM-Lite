@@ -50,6 +50,7 @@ class ContactCreate extends Component {
                 phone: '',
             });
             this.setState({ validated: false });
+            window.mixpanel.track('Contact Created', newContact);
         }
     };
 

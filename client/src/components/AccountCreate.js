@@ -44,6 +44,7 @@ class AccountCreate extends Component {
                 industry: ''
             });
             this.setState({ validated: false });
+            window.mixpanel.track('Account Created', newAccount);
         }
     };
 

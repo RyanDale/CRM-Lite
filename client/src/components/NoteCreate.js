@@ -47,6 +47,7 @@ class NoteCreate extends Component {
                 message: ''
             });
             this.setState({ validated: false });
+            window.mixpanel.track('Note Created', newNote);
         }
     };
 
