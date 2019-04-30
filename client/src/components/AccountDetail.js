@@ -6,7 +6,8 @@ import moment from 'moment';
 
 import AccountContacts from './AccountContacts';
 import NoteTimeline from './NoteTimeline';
-import { getAccount } from '../actions/accountActions';
+import NoteCreate from './NoteCreate';
+import { getAccount, updateAccount } from '../actions/accountActions';
 
 class AccountList extends Component {
     static propTypes = {
@@ -16,6 +17,14 @@ class AccountList extends Component {
 
     componentDidMount() {
         this.props.getAccount(this.props.match.params.id);
+    }
+
+    createNote(note) {
+        const {account} = this.props.account;
+        this.props.updateAccount({
+          notes: [...account.notes, note],
+          _id: account._id
+        });
     }
 
     render() {
@@ -51,6 +60,7 @@ class AccountList extends Component {
                 <br />
                 <Card body>
                     <Card.Title>Notes</Card.Title>
+                    <NoteCreate noteCreated={this.createNote.bind(this)}></NoteCreate>
                     <NoteTimeline notes={account.notes}></NoteTimeline>
                 </Card>
             </Container>
@@ -62,4 +72,4 @@ const mapStateToProps = state => ({
     account: state.account
 });
 
-export default connect(mapStateToProps, { getAccount })(AccountList);
+export default connect(mapStateToProps, { getAccount, updateAccount })(AccountList);
