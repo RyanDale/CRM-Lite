@@ -73,7 +73,8 @@ class NoteCreate extends Component {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Control
-                                    type="textarea"
+                                    as="textarea"
+                                    rows="5"
                                     name="message"
                                     id="message"
                                     placeholder="Message"
