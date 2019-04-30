@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import NoteTimeline from './NoteTimeline';
-import { getContact } from '../actions/contactActions';
+import { getContact, updateContact } from '../actions/contactActions';
+import NoteCreate from './NoteCreate';
 
 class ContactList extends Component {
     static propTypes = {
@@ -14,6 +15,14 @@ class ContactList extends Component {
 
     componentDidMount() {
         this.props.getContact(this.props.match.params.id);
+    }
+
+    createNote(note) {
+        const {contact} = this.props.contact;
+        this.props.updateContact({
+          notes: [...contact.notes, note],
+          _id: contact._id
+        });
     }
 
     render() {
@@ -49,7 +58,11 @@ class ContactList extends Component {
                 <br />
                 <Card body>
                     <Card.Title>Notes</Card.Title>
-                    <NoteTimeline notes={contact.notes}></NoteTimeline>
+                    <NoteCreate noteCreated={this.createNote.bind(this)}></NoteCreate>
+                    { !contact._id
+                        ? null
+                        : <NoteTimeline notes={contact.notes} id={contact._id} action={updateContact}></NoteTimeline>
+                    }
                 </Card>
             </Container>
         );
@@ -60,4 +73,4 @@ const mapStateToProps = state => ({
     contact: state.contact
 });
 
-export default connect(mapStateToProps, { getContact })(ContactList);
+export default connect(mapStateToProps, { getContact, updateContact })(ContactList);

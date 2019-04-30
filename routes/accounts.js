@@ -30,6 +30,15 @@ router.post('/', (req, res) => {
     account.save().then(account => res.json(account));
 });
 
+router.put('/:id', (req, res) => {
+    Account.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, (error, document) => {
+        if (error) {
+            return res.send(500, { error });
+        }
+        return res.send(document);
+    });
+});
+
 router.delete('/:id', (req, res) => {
     Account.findById(req.params.id)
         .then(account => account.remove().then(() => res.json({

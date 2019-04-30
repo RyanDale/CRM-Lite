@@ -30,6 +30,15 @@ router.post('/', (req, res) => {
     contact.save().then(contact => res.json(contact));
 });
 
+router.put('/:id', (req, res) => {
+    Contact.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true }, (error, document) => {
+        if (error) {
+            return res.send(500, { error });
+        }
+        return res.send(document);
+    });
+});
+
 router.delete('/:id', (req, res) => {
     Contact.findById(req.params.id)
         .then(contact => contact.remove().then(() => res.json({

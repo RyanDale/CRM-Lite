@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { Timeline, TimelineEvent } from 'react-event-timeline';
+import PropTypes from 'prop-types';
 
 class NoteTimeline extends Component {
+  static propTypes = {
+    notes: PropTypes.array.isRequired,
+  };
+
   render() {
     const notes = this.props.notes || [];
     return (

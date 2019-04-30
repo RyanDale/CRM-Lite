@@ -3,7 +3,8 @@ import {
     GET_CONTACT,
     GET_CONTACTS,
     CONTACTS_LOADING,
-    CREATE_CONTACT
+    CREATE_CONTACT,
+    UPDATE_CONTACT
 } from '../actions/types';
 
 const initialState = {
@@ -40,6 +41,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: true
+            };
+        case UPDATE_CONTACT:
+            return {
+                ...state,
+                contact: action.payload,
             };
         default:
             return state;
