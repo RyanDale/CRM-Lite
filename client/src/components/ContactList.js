@@ -6,6 +6,7 @@ import moment from 'moment';
 
 import { getContacts } from '../actions/contactActions';
 import ContactCreate from './ContactCreate';
+import ContactDelete from './ContactDelete';
 
 class ContactList extends Component {
     static propTypes = {
@@ -26,6 +27,7 @@ class ContactList extends Component {
                 <Table responsive>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -38,8 +40,11 @@ class ContactList extends Component {
                                 <td colwidth="4">Loading...</td>
                             </tr>
                             :
-                            contacts.map((contact) => (
+                            contacts.map(contact => (
                                 <tr key={contact._id}>
+                                <td>
+                                    <ContactDelete record={contact}></ContactDelete>
+                                </td>
                                     <td>
                                         <Nav.Link href={`#/contact-detail/${contact._id}`}>
                                             {`${contact.firstName} ${contact.lastName}`}

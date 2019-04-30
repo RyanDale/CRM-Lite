@@ -1,4 +1,5 @@
 import {
+    DELETE_CONTACT,
     GET_CONTACT,
     GET_CONTACTS,
     CONTACTS_LOADING,
@@ -14,10 +15,15 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case CREATE_CONTACT:
-        return {
-          ...state,
-          contacts: [action.payload, ...state.contacts]
-        };
+            return {
+                ...state,
+                contacts: [action.payload, ...state.contacts]
+            };
+        case DELETE_CONTACT:
+            return {
+                ...state,
+                contacts: state.contacts.filter(contact => contact._id !== action.payload)
+            };
         case GET_CONTACT:
             return {
                 ...state,

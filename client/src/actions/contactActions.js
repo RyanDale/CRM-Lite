@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_CONTACT, GET_CONTACTS, CONTACTS_LOADING, CREATE_CONTACT } from "./types";
+import { GET_CONTACT, GET_CONTACTS, CONTACTS_LOADING, CREATE_CONTACT, DELETE_CONTACT } from "./types";
 
 export const createContact = contact => (dispatch, getState) => {
     axios
@@ -12,6 +12,13 @@ export const createContact = contact => (dispatch, getState) => {
         })
       );
   };
+
+export const deleteContact = id => dispatch => {
+    axios.delete(`/api/contacts/${id}`).then(() => dispatch({
+        type: DELETE_CONTACT,
+        payload: id
+    }));
+}
 
 export const getContact = id => dispatch => {
     dispatch(setContactsLoading());
