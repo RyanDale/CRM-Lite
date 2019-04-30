@@ -2,7 +2,8 @@ import {
     GET_ACCOUNT,
     GET_ACCOUNTS,
     ACCOUNTS_LOADING,
-    CREATE_ACCOUNT
+    CREATE_ACCOUNT,
+    UPDATE_ACCOUNT
 } from '../actions/types';
 
 const initialState = {
@@ -34,6 +35,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: true
+            };
+        case UPDATE_ACCOUNT:
+            return {
+                ...state,
+                account: action.payload,
             };
         default:
             return state;
