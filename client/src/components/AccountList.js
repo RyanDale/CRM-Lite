@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import AccountCreate from './AccountCreate';
 import { getAccounts } from '../actions/accountActions';
 
 class AccountList extends Component {
@@ -21,6 +22,7 @@ class AccountList extends Component {
         return (
             <Card body>
                 <Card.Title>Account List</Card.Title>
+                <AccountCreate></AccountCreate>
                 <Table responsive>
                     <thead>
                         <tr>

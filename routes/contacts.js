@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Contact = require('../models/Contact');
 
-
+//TODO: Find DRY way to handle REST endpoints for models. Lots of reusable code.
 router.get('/', (req, res) => {
     Contact.find().sort({
         created: -1

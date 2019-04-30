@@ -5,15 +5,13 @@ import {
     Form
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { createContact } from '../actions/contactActions';
+import { createAccount } from '../actions/accountActions';
 
-class ContactCreate extends Component {
+class AccountCreate extends Component {
     state = {
         modal: false,
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
+        name: '',
+        industry: '',
         validated: false
     };
 
@@ -35,19 +33,15 @@ class ContactCreate extends Component {
           event.stopPropagation();
           this.setState({ validated: true });
         } else {
-            const newContact = {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                phone: this.state.phone,
+            const newAccount = {
+                name: this.state.name,
+                industry: this.state.industry
             };
-            this.props.createContact(newContact);
+            this.props.createAccount(newAccount);
             this.toggle();
             this.setState({
-                firstName: '',
-                lastName: '',
-                email: '',
-                phone: '',
+                name: '',
+                industry: ''
             });
             this.setState({ validated: false });
         }
@@ -58,18 +52,18 @@ class ContactCreate extends Component {
         return (
             <div>
                 <Button style={{ marginBottom: '2rem' }} onClick={this.toggle}>
-                        Create Contact
+                        Create Account
                 </Button>
                 <Modal show={this.state.modal} onHide={this.toggle}>
-                    <Modal.Header>Create Contact</Modal.Header>
+                    <Modal.Header>Create Account</Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={this.onSubmit} noValidate validated={validated}>
                             <Form.Group>
                                 <Form.Control
                                     type="text"
-                                    name="firstName"
-                                    id="firstName"
-                                    placeholder="First Name"
+                                    name="name"
+                                    id="name"
+                                    placeholder="Name"
                                     onChange={this.onChange}
                                     required
                                 />
@@ -77,27 +71,9 @@ class ContactCreate extends Component {
                             <Form.Group>
                                 <Form.Control
                                     type="text"
-                                    name="lastName"
-                                    id="lastName"
-                                    placeholder="Last Name"
-                                    onChange={this.onChange}
-                                />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    placeholder="Email"
-                                    onChange={this.onChange}
-                                />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Control
-                                    type="text"
-                                    name="phone"
-                                    id="phone"
-                                    placeholder="Phone"
+                                    name="industry"
+                                    id="industry"
+                                    placeholder="Industry"
                                     onChange={this.onChange}
                                 />
                             </Form.Group>
@@ -113,10 +89,10 @@ class ContactCreate extends Component {
 }
 
 const mapStateToProps = state => ({
-    contact: state.contact
+    account: state.account
 });
 
 export default connect(
     mapStateToProps,
-    { createContact }
-)(ContactCreate);
+    { createAccount }
+)(AccountCreate);
