@@ -13,7 +13,7 @@ class NavBar extends Component {
     return (
       <HashRouter>
         <Navbar bg="primary" variant="dark" style={{marginBottom: '20px'}}>
-          <Navbar.Brand href="#/">Contact Manager</Navbar.Brand>
+          <Navbar.Brand href="#/">CRM Lite</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link href="#/">Home</Nav.Link>
             <Nav.Link href="#/contact-list">Contacts</Nav.Link>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
+import AccountContacts from './AccountContacts';
 import NoteTimeline from './NoteTimeline';
 import { getAccount } from '../actions/accountActions';
 
@@ -45,6 +46,8 @@ class AccountList extends Component {
                         </tbody>
                     </Table>
                 </Card>
+                <br />
+                <AccountContacts contacts={account.contacts}></AccountContacts>
                 <br />
                 <Card body>
                     <Card.Title>Notes</Card.Title>

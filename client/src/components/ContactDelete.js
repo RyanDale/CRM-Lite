@@ -26,7 +26,7 @@ class ContactDelete extends Component {
         const record = this.props.record;
         return (
             <span>
-                <Button onClick={this.toggle}>
+                <Button variant="secondary" onClick={this.toggle}>
                     <i className="material-icons md-18">delete</i>
                 </Button>
                 <Modal show={this.state.modal} onHide={this.toggle}>
