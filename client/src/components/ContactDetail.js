@@ -18,10 +18,10 @@ class ContactList extends Component {
     }
 
     createNote(note) {
-        const {contact} = this.props.contact;
+        const { contact } = this.props.contact;
         this.props.updateContact({
-          notes: [...contact.notes, note],
-          _id: contact._id
+            notes: [...contact.notes, note],
+            _id: contact._id
         });
     }
 
@@ -47,8 +47,12 @@ class ContactList extends Component {
                                 </tr>
                                 : <tr>
                                     <td>{`${contact.firstName} ${contact.lastName}`}</td>
-                                    <td>{loading} {contact.email}</td>
-                                    <td>{contact.phone}</td>
+                                    <td>
+                                        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                                    </td>
+                                    <td>
+                                        <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+                                    </td>
                                     <td>{contact.lastContacted}</td>
                                 </tr>
                             }
@@ -59,7 +63,7 @@ class ContactList extends Component {
                 <Card body>
                     <Card.Title>Notes</Card.Title>
                     <NoteCreate noteCreated={this.createNote.bind(this)}></NoteCreate>
-                    { !contact._id
+                    {!contact._id
                         ? null
                         : <NoteTimeline notes={contact.notes} id={contact._id} action={updateContact}></NoteTimeline>
                     }

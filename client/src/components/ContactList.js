@@ -50,8 +50,12 @@ class ContactList extends Component {
                                             {`${contact.firstName} ${contact.lastName}`}
                                         </Nav.Link>
                                     </td>
-                                    <td>{contact.email}</td>
-                                    <td>{contact.phone}</td>
+                                    <td>
+                                        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                                    </td>
+                                    <td>
+                                        <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+                                    </td>
                                     <td>{moment(contact.created).format('LL')}</td>
                                 </tr>
                             ))
