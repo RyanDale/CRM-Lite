@@ -5,6 +5,7 @@ import {
     Form
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import mixpanel from 'mixpanel-browser';
 import { createAccount } from '../actions/accountActions';
 
 class AccountCreate extends Component {
@@ -44,7 +45,7 @@ class AccountCreate extends Component {
                 industry: ''
             });
             this.setState({ validated: false });
-            window.mixpanel.track('Account Created', newAccount);
+            mixpanel.track('Account Created', newAccount);
         }
     };
 

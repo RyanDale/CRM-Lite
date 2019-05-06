@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import {createBrowserHistory} from 'history'
-import Mixpanel from 'mixpanel';
+import mixpanel from 'mixpanel-browser';
 
 import './App.css';
 
@@ -14,14 +14,14 @@ class App extends Component {
     const trackPageView = location => {
       const uri = `${location.pathname}${location.search}${location.hash}`;
       const pageName = location.hash.split('/')[1] || 'home';
-      window.mixpanel.track('Page View', {
+      mixpanel.track('Page View', {
         uri,
         'Page Name': pageName
       });
     };
 
     // TODO: Pull this token from an env variable
-    window.mixpanel = Mixpanel.init('1f78febea606c22a820f86f7a9c5dbf7');
+    mixpanel.init('1f78febea606c22a820f86f7a9c5dbf7');
 
     history.listen(trackPageView);
 

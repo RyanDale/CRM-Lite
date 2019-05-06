@@ -5,6 +5,7 @@ import {
     Form
 } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import mixpanel from 'mixpanel-browser';
 import { createContact } from '../actions/contactActions';
 
 class ContactCreate extends Component {
@@ -50,7 +51,7 @@ class ContactCreate extends Component {
                 phone: '',
             });
             this.setState({ validated: false });
-            window.mixpanel.track('Contact Created', newContact);
+            mixpanel.track('Contact Created', newContact);
         }
     };
 

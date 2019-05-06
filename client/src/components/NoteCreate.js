@@ -4,6 +4,7 @@ import {
     Modal,
     Form
 } from 'react-bootstrap';
+import mixpanel from 'mixpanel-browser';
 import PropTypes from 'prop-types';
 
 class NoteCreate extends Component {
@@ -47,7 +48,7 @@ class NoteCreate extends Component {
                 message: ''
             });
             this.setState({ validated: false });
-            window.mixpanel.track('Note Created', newNote);
+            mixpanel.track('Note Created', newNote);
         }
     };
 
