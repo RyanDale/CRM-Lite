@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Table, Nav } from 'react-bootstrap';
+import { Card, Table, Nav, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -37,7 +37,9 @@ class ContactList extends Component {
                     <tbody>
                         {loading
                             ? <tr>
-                                <td colwidth="4">Loading...</td>
+                                <td class="text-center" colspan="5">
+                                    <Spinner animation="border" />
+                                </td>
                             </tr>
                             :
                             contacts.map(contact => (

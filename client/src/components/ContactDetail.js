@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Table, Container } from 'react-bootstrap';
+import { Card, Table, Container, Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -43,7 +43,9 @@ class ContactList extends Component {
                         <tbody>
                             {loading
                                 ? <tr>
-                                    <td colwidth="4">Loading...</td>
+                                    <td class="text-center" colspan="4">
+                                        <Spinner animation="border" />
+                                    </td>
                                 </tr>
                                 : <tr>
                                     <td>{`${contact.firstName} ${contact.lastName}`}</td>

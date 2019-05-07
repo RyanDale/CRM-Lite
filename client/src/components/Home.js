@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Jumbotron } from 'react-bootstrap';
 
 class Home extends Component {
   render() {
     return (
-      <Card body>
-        <Card.Title>Home</Card.Title>
-          <Card.Subtitle>
-            Welcome to the Contact Manager App. From here, you can create, view, delete, and add notes to your
-            contacts and accounts.
-          </Card.Subtitle>
-      </Card>
+      <Jumbotron>
+        <h1>CRM Lite</h1>
+        <p>
+          Welcome to the Contact Manager App. From here, you can create, view, delete, and add notes to your
+          contacts and accounts.
+        </p>
+        <p>
+          <Button variant="primary" href="https://github.com/RyanDale/CRM-Lite" target="_blank">
+            View Source Code
+          </Button>
+        </p>
+      </Jumbotron>
     );
   }
 }
