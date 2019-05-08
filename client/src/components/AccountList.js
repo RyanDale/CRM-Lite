@@ -34,7 +34,7 @@ class AccountList extends Component {
                     <tbody>
                         {loading
                             ? <tr>
-                                <td class="text-center" colspan="3">
+                                <td className="text-center" colSpan="3">
                                     <Spinner animation="border" />
                                 </td>
                             </tr>

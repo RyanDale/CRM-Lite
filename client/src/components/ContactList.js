@@ -37,7 +37,7 @@ class ContactList extends Component {
                     <tbody>
                         {loading
                             ? <tr>
-                                <td class="text-center" colspan="5">
+                                <td className="text-center" colSpan="5">
                                     <Spinner animation="border" />
                                 </td>
                             </tr>
